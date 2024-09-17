@@ -1,0 +1,88 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<main class="main">
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+               <nav class="breadcrumbs">
+          <div class="container">
+            <ol>
+              <li><a href="#">Home</a></li>
+              <li class="current">Appointment-Success</li>
+            </ol>
+          </div>
+        </nav>
+      </div><!-- End Page Title -->
+
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+         
+
+          <div id="printable-area">     
+            {% for m in messages %} 
+             {% if m %}
+               <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Appointment Confirmed!</h4>    
+                <p></p>{{m}}</p>
+               </div>
+             {% endif %}  
+            {% endfor %}  
+          
+                    
+          <!-- Appointment Details -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title">Appointment Details</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Customer Information</h6>
+              <ul class="list-unstyled">
+                <li><strong>Name:</strong> {{data.name}}</li>
+                <li><strong>Email:</strong> {{data.email}}</li>
+                <li><strong>Phone:</strong> {{data.phone}}</li>
+              </ul>
+
+              <h6 class="card-subtitle mb-2 text-muted">Doctor Information</h6>
+              <ul class="list-unstyled">
+                <li><strong>Doctor:</strong> {{data.doctor}}</li>
+                <li><strong>Specialty:</strong> {{data.department}}</li>
+              </ul>
+
+              <h6 class="card-subtitle mb-2 text-muted">Appointment Details</h6>
+              <ul class="list-unstyled">
+                
+                <li><strong>Date:</strong> {{data.date}}</li>
+               
+                <li><strong>Time:</strong> {{data.time}}</li>
+              </ul>
+            </div>
+          </div>
+          </div>
+
+          <!-- Print Button -->
+         <div class="mb-4">
+            <button class="btn btn-primary text-center" onclick="printDiv('printable-area')">Print Details</button>
+          
+          <!-- CTA Button -->
+          <a href="#appointment" class="btn btn-primary">Book Another Appointment</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Print Function -->
+  <script>
+    function printDiv(divId) {
+      var printContents = document.getElementById(divId).innerHTML;
+      var originalContents = document.body.innerHTML;
+
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
+    }
+  </script>
+{% endblock %}

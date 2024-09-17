@@ -1,2 +1,2 @@
-pip install -r requirements.txt
-python3.12.2 collectstatic
+pip3 install -r requirements.txt
+python3 collectstatic
